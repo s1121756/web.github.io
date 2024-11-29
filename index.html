@@ -1,82 +1,39 @@
-# web.github.io
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Headings</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: bold;
-            position: relative;
-            color: black; /* 文字顏色設為黑色 */
-            text-shadow: 0px 4px 4px pink; /* 只有陰影顏色是粉紅色 */
-            display: block; /* 改為塊級元素，讓h1獨佔一行 */
-            margin-bottom: 20px; /* 添加底部間距，避免與h2重疊 */
-        }
-
-        h1::before {
-            content: "";
-            position: absolute;
-            top: -10px; /* 上方線條位置 */
-            left: 0;
-            width: 20%;
-            height: 4px;
-            background-color: black; /* 黑色底線 */
-        }
-
-        h2 {
-            font-size: 24px;
-            font-style: italic;
-            padding: 10px;
-            display: block; /* 改為塊級元素，讓h2獨佔一行 */
-            border: 2px solid yellow;
-            position: relative;
-            width: 525px;
-            box-shadow: 0 0 10px 3px yellow;
-            margin-bottom: 50px;
-        }
-
-        h2::after {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid black;
-            pointer-events: none;
-        }
-
-        h3 {
-            font-size: 18px;
-            font-weight: bold;
-            text-decoration: underline;
-            margin-left: 400px;
-            margin-top: 20px;
-        }
-
-        .container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .container h2 {
-            margin-bottom: 50px;
-        }
-    </style>
+    <title>募款網站</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>This is heading 1</h1>
-    <div class="container">
-        <h2>This is heading 2</h2>
-        <h3>This is heading 3</h3>
-    </div>
+    <header>
+        <h1>支持我們的公益事業</h1>
+        <p>幫助需要幫助的人，讓世界變得更好。</p>
+    </header>
+    <main>
+        <section id="about">
+            <h2>關於我們</h2>
+            <p>我們是一個致力於幫助有需要的人們的非營利組織。您的捐款將幫助我們提供必要的援助。</p>
+        </section>
+
+        <section id="goal">
+            <h2>募款目標</h2>
+            <p>我們的目標是籌集 $50,000 來支援未來的項目。</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 40%;"></div>  <!-- 假設目前進度為40% -->
+            </div>
+            <p>目前已籌集 $20,000</p>
+        </section>
+
+        <section id="donate">
+            <h2>立即捐款</h2>
+            <p>請選擇您想要捐款的金額，讓我們一起改變世界！</p>
+            <a href="donate.html" class="donate-button">捐款</a>
+        </section>
+    </main>
+    <footer>
+        <p>聯繫我們: info@charity.org</p>
+    </footer>
 </body>
 </html>
