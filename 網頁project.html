@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Food Distribution System</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background: #ff6b6b;
+            border-radius: 5px;
+        }
+        section {
+            padding: 2rem;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 2rem auto;
+        }
+        .progress-container {
+            width: 80%;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .progress-bar-inner {
+            height: 30px;
+            width: 50%; /* 初始進度條寬度 */
+            background: #4ecdc4;
+            line-height: 30px;
+            color: #fff;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .timer {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+        .social-share {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .social-share a {
+            margin: 0 10px;
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .social-share a:hover {
+            background-color: #ff6b6b;
+        }
+        footer {
+            text-align: center;
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        .highlight {
+            background: #ffe66d;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<script src="js/all.js"></script>
+
+<body>
+    <header>
+        <h1>Smart Food Distribution System</h1>
+        <p>Tackling Hunger with Technology</p>
+    </header>
+    <nav>
+        <a href="網頁project.html">Home</a>
+        <a href="data.html">Data Visualization</a>
+        <a href="donate.html">Donate</a>
+        <a href="Countdown-Timer.html">Countdown Timer</a>
+    </nav>
+
+    <!-- Introduction Section -->
+    <section id="introduction">
+        <h2>Introduction to Global Hunger</h2>
+        <p>Global hunger affects over 733 million people worldwide. Despite sufficient global food production, millions of people still lack access to nutritious food.</p>
+        
+        <p class="highlight">Our mission is to promote food security, reduce food waste, and encourage sustainable farming to eliminate hunger by 2030.</p>
+    </section>
+
+
+
+<section id="donations">
+    <h2>!!　Help Hunger people　!!</h2>
+    <p style="text-align: center;">Help us make a difference by contributing to our cause.<br> You can donate, volunteer, or transfer directly to our bank account.</p>
+    <div style="display: flex; justify-content: center; align-items: flex-start; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+        
+        <!-- Donation Button -->
+        <div style="flex: 1; max-width: 400px; text-align: center;">
+            <a href="donate.html" style="display: inline-block; background: #ff0505; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 10px; font-weight: bold;">Donate Now</a>
+        </div>
+    </div>
+</section>
+
+<section id="social-share">
+    <h2>Share Mission</h2>
+    <div class="social-share">
+        <a href="https://zh-tw.facebook.com/login/web/" target="_blank">Facebook</a>
+        <a href="https://twitter.com/intent/tweet?url=yourURL" target="_blank">Twitter</a>
+        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+    </div>
+</section>
+
+    
+
+    <footer>
+        <p>&copy; 2024 Smart Food Distribution System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Chart.js Data Visualization
+        const ctx = document.getElementById('hungerChart').getContext('2d');
+        const chartColors = ['#FF5733', '#33FFBD', '#FFC300', '#DAF7A6', '#C70039'];
+        const chartData = {
+            labels: ['Africa', 'Asia', 'South America', 'North America', 'Europe'],
+            datasets: [{
+                label: 'People Suffering from Hunger (in millions)',
+                data: [250, 420, 60, 15, 10],
+                backgroundColor: chartColors
+            }]
+        };
+
+        const hungerChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Global Hunger Levels by Region' }
+                }
+            }
+        });
+
+        // Filter by Region interaction
+        document.getElementById('regionFilter').addEventListener('change', function () {
+            const region = this.value;
+            const regionMap = {
+                africa: 0,
+                asia: 1,
+                southAmerica: 2,
+                northAmerica: 3,
+                europe: 4,
+            };
+            const allData = [250, 420, 60, 15, 10];
+
+            if (region === 'all') {
+                hungerChart.data.datasets[0].data = allData;
+                hungerChart.data.datasets[0].backgroundColor = chartColors;
+            } else {
+                hungerChart.data.datasets[0].data = [allData[regionMap[region]]];
+                hungerChart.data.datasets[0].backgroundColor = [chartColors[regionMap[region]]];
+            }
+            hungerChart.update();
+        });
+
+        // Donation Slider Interaction
+        document.getElementById('donationAmount').addEventListener('input', function () {
+            document.getElementById('donationOutput').textContent = `$${this.value}`;
+        });
+
+        // Donation Progress Update
+        function updateProgressBar(current, goal) {
+            const progress = Math.min((current / goal) * 100, 100);
+            const progressBarInner = document.getElementById('progressBarInner');
+            progressBarInner.style.width = `${progress}%`;
+            progressBarInner.textContent = `${Math.round(progress)}%`;
+        }
+        updateProgressBar(5000, 10000);
+
+        // Countdown Timer
+        function startCountdown(eventDate) {
+            const timer = document.getElementById('countdownTimer');
+            function updateTimer() {
+                const now = new Date();
+                const timeLeft = eventDate - now;
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    timer.textContent = 'The event has started!';
+                    return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % 1000) / 1000);
+
+                timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+            const interval = setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+        startCountdown(new Date('2024-12-31T23:59:59'));
+    </script>
+</body>
+</html>

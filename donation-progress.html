@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Progress - Smart Food Distribution System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background: #ff6b6b;
+            border-radius: 5px;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        .progress-container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #ddd;
+            border-radius: 20px;
+            height: 30px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+            line-height: 30px;
+            font-weight: bold;
+            width: 0;
+            transition: width 0.5s ease;
+        }
+        .donate-button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .donate-button:hover {
+            background-color: #e44b4b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Donation Progress</h1>
+        <p>Help Us Reach Our Goal to Fight Hunger</p>
+    </header>
+    <nav>
+        <a href="網頁project.html">Home</a>
+        <a href="data.html">Data Visualization</a>
+        <a href="donate.html">Donate</a>
+        <a href="Countdown-Timer.html">Countdown Timer</a>
+    </nav>
+
+    <section>
+        <h2>Our Donation Goal: $100,000</h2>
+        <p>Every donation helps us fight hunger. Your contribution makes a big difference!</p>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+
+        <p>Total Donations: $<span id="donationAmount">0</span> / $100,000</p>
+
+        <!-- Button to donate now -->
+        <a href="donate.html">
+            <button class="donate-button">Donate Now</button>
+        </a>
+
+        <a href="網頁project.html">
+            <button class="donate-button">Back Home</button>
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Smart Food Distribution System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const donationGoal = 100000; // $100,000 goal
+
+        // Fetch current donation from localStorage
+        let currentDonation = parseFloat(localStorage.getItem('currentDonation'));
+
+        // Calculate donation percentage
+        let donationPercentage = (currentDonation / donationGoal) * 100;
+        if (donationPercentage > 100) donationPercentage = 100;
+
+        // Update the progress bar and donation amount
+        document.getElementById('progressBar').style.width = donationPercentage + '%';
+        document.getElementById('progressBar').innerText = donationPercentage.toFixed(2) + '%';
+        document.getElementById('donationAmount').innerText = currentDonation.toLocaleString();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Now - Smart Food Distribution System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background: #ff6b6b;
+            border-radius: 5px;
+        }
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+        .donation-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        .donation-option {
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .donate-button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .donate-button:hover {
+            background-color: #e44b4b;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Donate Now</h1>
+        <p>Your support helps us achieve our goal to eliminate hunger!</p>
+    </header>
+    <nav>
+        <a href="網頁project.html">Home</a>
+        <a href="data.html">Data Visualization</a>
+        <a href="donate.html">Donate</a>
+        <a href="Countdown-Timer.html">Countdown Timer</a>
+    </nav>
+
+    <section>
+        <div class="donation-form">
+            <h2>Choose your donation method:</h2>
+
+            <!-- Credit Card Option -->
+            <div class="donation-option">
+                <h3>Credit Card</h3>
+                <p>Donate via credit card (Visa, MasterCard, etc.).</p>
+                <button class="donate-button" onclick="window.location.href='https://payment-gateway-link.com'">Donate with Credit Card</button>
+            </div>
+            <script src="https://www.paypal.com/sdk/js?client-id=AZU3RSgMW34fr4i35_mfv9qhmeZ2HN7kal7ObvcKNQ6hwCnygT_P_FVxyDIZrVXQXM0oFHe9Nbi56gSB&components=buttons"></script>
+
+<div id="paypal-button-container"></div>
+
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '1000.00'  // 金額, 可以根據需要改動
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('付款成功，感謝您的捐款！' + details.payer.name.given_name);
+                // 這裡可以將成功支付的結果傳遞給伺服器進行處理
+            });
+        },
+        onError: function(err) {
+            console.error('支付失敗', err);
+        }
+    }).render('#paypal-button-container');  // 渲染到 HTML 元素中
+</script>
+
+
+            <!-- ATM Transfer Option -->
+            <div class="donation-option">
+                <h3>ATM Transfer</h3>
+                <p>Transfer the donation amount via ATM to our account.</p>
+                <button class="donate-button" onclick="window.location.href='atm-transfer-instructions.html'">ATM Transfer Instructions</button>
+            </div>
+
+            <!-- Bank Transfer Option -->
+            <div class="donation-option">
+                <h3>Bank Transfer</h3>
+                <p>Bank transfer to the following account:</p>
+                <p><strong>Bank Name:</strong> 國泰世華銀行 (Cathay United Bank)<br>
+                   <strong>Branch Code:</strong> 013<br>
+                   <strong>Account Number:</strong> 075506344468
+                </p>
+                <button class="donate-button" onclick="alert('Thank you for choosing bank transfer. Please follow the bank transfer instructions to complete your donation.')">Donate via Bank Transfer</button>
+            </div>
+        </div>
+    </section>
+    <div style="text-align: center;">
+        <a href="網頁project.html" style="display: inline-block; background: #ff0505; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 10px; font-weight: bold;">Back Home</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Smart Food Distribution System. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization - Smart Food Distribution System</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        nav a:hover {
+            background: #ff6b6b;
+            border-radius: 5px;
+        }
+        section {
+            padding: 2rem;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 2rem auto;
+        }
+        .highlight {
+            background: #ffe66d;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Data Visualization - Global Hunger</h1>
+        <p>Understanding Hunger Levels and Regional Disparities</p>
+    </header>
+
+    <nav>
+        <a href="網頁project.html">Home</a>
+        <a href="data.html">Data Visualization</a>
+        <a href="donate.html">Donate</a>
+        <a href="Countdown-Timer.html">Countdown Timer</a>
+    </nav>
+
+    <section id="data-visualization">
+        <h2>Data Visualization</h2>
+        <p>The chart below illustrates the number of people suffering from hunger in various regions:</p>
+        <div class="chart-container">
+            <canvas id="hungerChart"></canvas>
+        </div>
+        <p class="highlight">Global hunger levels are rising, but together we can make a difference by reducing food waste and supporting sustainable farming practices.</p>
+        <label for="regionFilter">Filter by Region:</label>
+        <select id="regionFilter">
+            <option value="all">All Regions</option>
+            <option value="africa">Africa</option>
+            <option value="asia">Asia</option>
+            <option value="southAmerica">South America</option>
+            <option value="northAmerica">North America</option>
+            <option value="europe">Europe</option>
+        </select>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Smart Food Distribution System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Chart.js Data Visualization
+        const ctx = document.getElementById('hungerChart').getContext('2d');
+        const chartColors = ['#FF5733', '#33FFBD', '#FFC300', '#DAF7A6', '#C70039'];
+        const chartData = {
+            labels: ['Africa', 'Asia', 'South America', 'North America', 'Europe'],
+            datasets: [{
+                label: 'People Suffering from Hunger (in millions)',
+                data: [250, 420, 60, 15, 10],
+                backgroundColor: chartColors
+            }]
+        };
+
+        const hungerChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Global Hunger Levels by Region' }
+                }
+            }
+        });
+
+        // Filter by Region interaction
+        document.getElementById('regionFilter').addEventListener('change', function () {
+            const region = this.value;
+            const regionMap = {
+                africa: 0,
+                asia: 1,
+                southAmerica: 2,
+                northAmerica: 3,
+                europe: 4,
+            };
+            const allData = [250, 420, 60, 15, 10];
+
+            if (region === 'all') {
+                hungerChart.data.datasets[0].data = allData;
+                hungerChart.data.datasets[0].backgroundColor = chartColors;
+            } else {
+                hungerChart.data.datasets[0].data = [allData[regionMap[region]]];
+                hungerChart.data.datasets[0].backgroundColor = [chartColors[regionMap[region]]];
+            }
+            hungerChart.update();
+        });
+    </script>
+</body>
+</html>
